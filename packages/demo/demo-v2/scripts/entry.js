@@ -1,3 +1,10 @@
+/*
+ * @Author: atdow
+ * @Date: 2021-04-08 09:57:31
+ * @LastEditors: null
+ * @LastEditTime: 2021-04-08 14:21:49
+ * @Description: file content
+ */
 /**
  * Created by Liu.Jun on 2018/5/31.
  */
@@ -33,7 +40,7 @@ const isEntry = (filePath, curDir) => {
 // 默认的模板文件
 const defaultTemp = path.resolve(__dirname, '../default.html');
 
-function entryFn({ dir, chunks = [] }) {
+function entryFn({ dir, chunks = [] }) { // ['user-runtime', 'user-vendors-polyfill']
     // entry 文件相对的目录
     const dirPath = path.normalize(path.resolve(__dirname, '../src/pages'));
 
@@ -54,7 +61,7 @@ function entryFn({ dir, chunks = [] }) {
         // const fileName = path.basename(entry, path.extname(entry));
 
         // 第一个 entry 为浏览器默认打开页面
-        if (index === 0) openPage = `${entryName}.html`;
+        if (index === 0) openPage = `${entryName}.html`; // index.html
 
         preValue[entryName] = {
             entry,
@@ -79,11 +86,11 @@ function entryFn({ dir, chunks = [] }) {
 }
 
 module.exports = ({
-    chunks = []
+    chunks = [] // ['user-runtime', 'user-vendors-polyfill']
 } = {}) => {
     // 相对于 根目录
     const {
-        dir, // 指定编译的目录
+        dir, // 指定编译的目录 undefined
     } = envConfig.getConfig();
 
     return entryFn({

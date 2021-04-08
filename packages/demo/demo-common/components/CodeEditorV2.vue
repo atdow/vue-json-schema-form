@@ -122,10 +122,11 @@ export default {
             // onMouseLeave
             // onDidChangeModelContent
 
-            const eventName = this.lazy ? 'onDidBlurEditorText' : 'onDidChangeModelContent';
+            const eventName = this.lazy ? 'onDidBlurEditorText' : 'onDidChangeModelContent'; // onDidChangeModelContent
 
             editor[eventName](() => {
                 const newValue = editor.getValue();
+                // console.log('newValue:', newValue);
                 // 数据变化同步数据
                 if (newValue !== this.value) {
                     this.$emit('input', newValue);

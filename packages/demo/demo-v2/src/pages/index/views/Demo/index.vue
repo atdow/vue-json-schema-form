@@ -196,6 +196,7 @@
 import EditorHeader from 'demo-common/components/EditorHeader.vue';
 import CodeEditor from 'demo-common/components/CodeEditorV2';
 import schemaTypes from 'demo-common/schemaTypes';
+// console.log('schemaTypes:', schemaTypes);
 
 const VueElementForm = () => import('@lljj/vue-json-schema-form');
 
@@ -210,6 +211,7 @@ const VueIview3Form = async () => {
 };
 
 const typeItems = Object.keys(schemaTypes);
+// console.log('typeItems:', typeItems);
 
 export default {
     name: 'Demo',
@@ -274,6 +276,7 @@ export default {
         },
         curFormDataCode: {
             get() {
+                // console.log(this.genCodeStrComputedGetter('formData'));
                 return this.genCodeStrComputedGetter('formData');
             },
             set(val) {
@@ -313,6 +316,7 @@ export default {
                     formProps: formatStr(JSON.stringify(this.trueFormProps)),
                 }
             });
+            // console.log('formatStr(this.curFormDataCode):', formatStr(this.curFormDataCode));
             window.location.reload();
         },
         sliderFormat(value) {
@@ -320,6 +324,7 @@ export default {
         },
         getDefaultSchemaMap() {
             return {
+                // codeEditor
                 schema: {},
                 uiSchema: {},
                 formData: {},
@@ -338,6 +343,7 @@ export default {
         },
         genCodeStrComputedGetter(vmKey) {
             try {
+                // console.log('this[vmKey]:', this[vmKey]);
                 return this[vmKey] ? JSON.stringify(this[vmKey], null, 4) : '{}';
             } catch (e) {
                 return '{}';
@@ -375,7 +381,7 @@ export default {
                 ...defaultState.formProps,
                 ...(queryParamsObj.formProps || {})
             };
-
+            // 这里是核心初始化数据
             Object.assign(this, defaultState, Object.assign(schemaTypes[this.curType], queryParamsObj, {
                 formProps
             }));
